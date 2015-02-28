@@ -566,6 +566,7 @@ int cpReactor_start(int sock)
         CPGS->reactor_threads[i].thread_id = pidt;
     }
     epoll_wait_handle handles[CP_MAX_EVENT];
+    bzero(handles, sizeof(handles));
     handles[EPOLLIN] = cpServer_master_onAccept;
 
     usleep(50000);
