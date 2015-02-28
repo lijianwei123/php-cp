@@ -124,14 +124,7 @@ int cpEpoll_wait(epoll_wait_handle *handles, struct timeval *timeo, int epfd) {
             else if ((events[i].events & (EPOLLERR | EPOLLHUP)))
 #endif
             {
-                if (events[i].data.fd > 0)
-                {
-                    ret = handles[EPOLL_CLOSE](events[i].data.fd);
-                    if (ret < 0)
-                    {
-                        cpLog("epoll [EPOLLRDHUP] handle failed. fd=%d. Error: %s[%d]", events[i].data.fd, strerror(errno), errno);
-                    }
-                }
+               continue;
             }
         }
         if (n < 0)
